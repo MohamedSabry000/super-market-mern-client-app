@@ -21,6 +21,7 @@ function Signup() {
                       className="form-control"
                       type="password"
                       name="username"
+                      placeholder="Enter Username"
                     />
                   </div>
                   <div className="mb-3 input-container">
@@ -32,6 +33,7 @@ function Signup() {
                       className="form-control"
                       type="password"
                       name="password"
+                      placeholder="Enter Password"
                     />
                   </div>
                   <div className="mb-3 input-container">
@@ -43,6 +45,7 @@ function Signup() {
                       className="form-control"
                       type="email"
                       name="email"
+                      placeholder="Enter Email"
                     />
                   </div>
                   <div className="mb-3 input-container">
@@ -54,6 +57,7 @@ function Signup() {
                       className="form-control"
                       type="text"
                       name="phone"
+                      placeholder="Enter Phone"
                     />
                   </div>
                   <div className="mb-3 input-container">
@@ -65,6 +69,7 @@ function Signup() {
                       className="form-control"
                       type="text"
                       name="address"
+                      placeholder="Enter Address"
                     />
                   </div>
                   <div className="mb-3 input-container ">

@@ -1,5 +1,19 @@
 import "./login.css";
 function Login() {
+  let [username, password] = ["", "", ""];
+  let usernameChange = (e) => {
+    console.log(e.target.value);
+    username = e.target.value;
+    if (username.length < 3) e.target.style = "border-color:#bc3942";
+    else e.target.style = "border-color:#d8e2dc";
+  };
+  let passwordChange = (e) => {
+    password = e.target.value;
+    if (password.length < 8) {
+      e.target.style = "border-color:#bc3942";
+    } else e.target.style = "border-color:#d8e2dc";
+  };
+
   return (
     <>
       <div className="login">
@@ -21,6 +35,10 @@ function Login() {
                       className="form-control"
                       type="text"
                       name="username"
+                      placeholder="Enter Username"
+                      onChange={(e) => {
+                        usernameChange(e);
+                      }}
                     />
                   </div>
                   <div className="mb-3 input-container">
@@ -32,6 +50,10 @@ function Login() {
                       className="form-control"
                       type="password"
                       name="password"
+                      placeholder="Enter password"
+                      onChange={(e) => {
+                        passwordChange(e);
+                      }}
                     />
                   </div>
                   <div className="mb-3 input-container ">

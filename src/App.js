@@ -3,8 +3,8 @@ import Signup from "./component/signup/Signup";
 function App() {
   return (
     <>
-      {/* <Signup /> */}
-      <Login />
+      <Signup />
+      {/* <Login /> */}
     </>
   );
 }
