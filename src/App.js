@@ -3,7 +3,7 @@ import Navbar  from "./component/navbar/Navbar";
 import Home from "./component/homepage/Home";
 import Login from "./component/login/Login";
 import Signup from "./component/signup/Signup";
-import FooterComp from "./component/footer/Footer";
+//import FooterComp from "./component/footer/Footer";
 
 function App() {
   return (

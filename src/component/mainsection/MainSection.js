@@ -1,19 +1,44 @@
-import './mainsection.css';
-import './MainSection.js';
-function MainSection(){
+import "./mainsection.css";
+import "./MainSection.js";
+import firstImg from "../../assests/img/firstslide.jpg";
+import secondImg from "../../assests/img/secondslide.jpg";
+import thirdImg from "../../assests/img/firstslide.jpg";
+function MainSection() {
     return (
-        <>
-            <section className="main-section">
-                <div className="container">
-                    <div className="intro">
-                        <h1 className="title">This is heading</h1>
-                        <p className="description">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor</p>
-                        <button className="btn btn-product">buy now</button>
-                    </div>
+      <>
+        <section className="main-section">
+              <div class="intro text-center">
+                  <h1 class="title">This is heading</h1>
+                  <p className="description">Lorem Ipsum is simply typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when </p>
+                  <button className="btn btn-product">buy now</button>
+              </div>
+              <div id="carouselExampleFade" class="carousel slide carousel-fade" data-bs-ride="carousel">
+              <div class="carousel-inner">
+                <div class="carousel-item active">
+                    <img src={firstImg} class="d-block w-100" alt="..." />
                 </div>
-            </section>        
-        </>
-    )
-}
+                <div class="carousel-item">
+                    <img src={secondImg} class="d-block w-100" alt="..." />
+                </div>
+                <div class="carousel-item">
+                    <img src={thirdImg} class="d-block w-100" alt="..." />
+                </div>
+          </div>
+          <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="prev">
+              <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Previous</span>
+          </button>
+          <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleFade" data-bs-slide="next">
+              <span class="carousel-control-next-icon" aria-hidden="true"></span>
+              <span class="visually-hidden">Next</span>
+          </button>
+          </div>
+          <div class="arrow">
+              
+          </div>
+        </section>
+      </>
+    );
+  }
 
-export default MainSection
+export default MainSection;
