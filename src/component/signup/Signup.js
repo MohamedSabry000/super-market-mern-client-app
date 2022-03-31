@@ -1,10 +1,11 @@
 import "./signup.css";
 import { useState } from "react";
 import validator from "validator";
+import { Link } from "react-router-dom";
+
 function Signup() {
   let [email, username, password, phone, address] = ["", "", "", "", ""];
   const [emailError, setEmailError] = useState("");
-
   let usernameChange = (e) => {
     console.log(e.target.value);
     username = e.target.value;
@@ -26,7 +27,7 @@ function Signup() {
   let addressChange = (e) => {
     console.log(e.target.value);
     address = e.target.value;
-    if (address.length < 10) e.target.style = "border-color:#bc3942";
+    if (address.length < 3) e.target.style = "border-color:#bc3942";
     else e.target.style = "border-color:#d8e2dc";
   };
   let emailChange = (e) => {
@@ -52,7 +53,7 @@ function Signup() {
             </div>
             <div className="col-6">
               <div className="signup-content">
-                <p className="signup-text">Signup</p>
+                <p className="signup-text">Sign Up</p>
                 <form method="post">
                   <div className="mb-3 input-container">
                     <label className="form-label" for="username">
@@ -140,8 +141,8 @@ function Signup() {
                       Signup
                     </button>
                   </div>
-                  <p className="signin-link">
-                    Already have an account <a href="#">sign in</a>
+                  <p className="signin-Link">
+                    Already have an account <Link to="/login">Log In</Link>
                   </p>
                 </form>
               </div>

@@ -1,4 +1,5 @@
 import "./login.css";
+import { Link } from "react-router-dom";
 function Login() {
   let [username, password] = ["", "", ""];
   let usernameChange = (e) => {
@@ -13,7 +14,6 @@ function Login() {
       e.target.style = "border-color:#bc3942";
     } else e.target.style = "border-color:#d8e2dc";
   };
-
   return (
     <>
       <div className="login">
@@ -24,7 +24,7 @@ function Login() {
             </div>
             <div className="col-6">
               <div className="login-content">
-                <p className="login-text">Login</p>
+                <p className="login-text">Log In</p>
                 <form method="post">
                   <div className="mb-3 input-container">
                     <label className="form-label" for="username">
@@ -61,8 +61,8 @@ function Login() {
                       login
                     </button>
                   </div>
-                  <p className="signup-link">
-                    Don't have an account <a href="#">sign up</a>
+                  <p className="signup-Link ">
+                    Don't have an account <Link to="/signup">Sign Up</Link>
                   </p>
                 </form>
               </div>
