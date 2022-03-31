@@ -20,8 +20,8 @@
     -webkit-transition: all 0.3s;
     -moz-transition: all 0.3s;
     transition: all 0.3s;
-    padding-right: 2.5rem;
-    padding-left: 0.5rem;
+    padding-right: 0.85rem;
+    padding-left: 0.85rem;
 
 }
 .customize-navbar .container .navbar-nav li .nav-link.active{
@@ -54,10 +54,10 @@
     content: "Signup";
     transition: all 0.5s;
 }
-.customize-navbar .container .auth link.register:hover::before {
+.customize-navbar .container .auth .link.register:hover::before {
     color: #fff;
 }
-.customize-navbar .container .auth link.register::after {
+.customize-navbar .container .auth .link.register::after {
     content: "";
     position: absolute;
     left: 0px;
@@ -70,6 +70,6 @@
     
 }
 
-.customize-navbar .container .auth a.register:hover::after {    
+.customize-navbar .container .auth .link.register:hover::after {    
     width: 100%; 
 }   
