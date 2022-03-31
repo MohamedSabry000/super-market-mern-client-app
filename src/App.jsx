@@ -8,11 +8,11 @@ import { Navbar } from "./component/navbar/Navbar";
 function App() {
   return (
     <>
-      <Profile />
-      {/* <Routes>
+      <Routes>
+        <Route path="/profile" element={<Profile />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-      </Routes> */}
+      </Routes>
     </>
   );
 }

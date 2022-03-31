@@ -24,6 +24,7 @@
   box-shadow: 0px 0px 15px 0px #777;
 }
 .footer .footer-content {
+  padding-left: 350px;
   height: 350px;
   display: flex;
   margin: 0 auto;
