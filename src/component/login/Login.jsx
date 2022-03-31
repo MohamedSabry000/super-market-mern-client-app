@@ -1,5 +1,7 @@
 import "./login.css";
 import { Link } from "react-router-dom";
+import { Navbar } from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 function Login() {
   let [username, password] = ["", "", ""];
   let usernameChange = (e) => {
@@ -16,6 +18,7 @@ function Login() {
   };
   return (
     <>
+      <Navbar />
       <div className="login">
         <div className="container">
           <div className="row  g-0">
@@ -62,7 +65,15 @@ function Login() {
                     </button>
                   </div>
                   <p className="signup-Link ">
-                    Don't have an account <Link to="/signup">Sign Up</Link>
+                    Don't have an account{" "}
+                    <Link
+                      to="/signup"
+                      style={{
+                        color: "white",
+                      }}
+                    >
+                      Sign Up
+                    </Link>
                   </p>
                 </form>
               </div>
@@ -70,6 +81,7 @@ function Login() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -53,15 +53,18 @@
   font-weight: 500;
   font-size: 0.9rem;
 }
-
+p {
+  color: rgba(211, 206, 206, 0.87);
+}
 .login .login-content .input-container button {
-  border-radius: 20px;
+  border-radius: 5px;
+  margin: 50px auto;
   border: none;
-  margin-top: 50px;
-  background-color: #bc3942;
-  width: 100px;
-  -webkit-border-radius: 20px;
-  -moz-border-radius: 20px;
-  -ms-border-radius: 20px;
-  -o-border-radius: 20px;
+  color: white;
+  background-color: #343a40;
+  width: 90%;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
 }

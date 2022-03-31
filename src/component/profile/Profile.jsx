@@ -18,24 +18,13 @@ export default function Profile() {
               <div className="card mb-4">
                 <div className="card-body text-center">
                   <img
-                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
+                    src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6.webp"
                     alt="avatar"
                     className="rounded-circle img-fluid"
                   />
-                  <h5 className="my-3">John Smith</h5>
-                  <p className="text-muted mb-1">Full Stack Developer</p>
-                  <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                  <div className="d-flex justify-content-center mb-2">
-                    <button type="button" className="btn btn-primary">
-                      Follow
-                    </button>
-                    <button
-                      type="button"
-                      className="btn btn-outline-primary ms-1"
-                    >
-                      Message
-                    </button>
-                  </div>
+                  <h5 className="my-3">Mohamed</h5>
+                  <p className="text-muted mb-1">Seller</p>
+                  <p className="text-muted mb-4">Shebin El-kom</p>
                 </div>
               </div>
             </div>
@@ -44,10 +33,10 @@ export default function Profile() {
                 <div className="card-body">
                   <div className="row">
                     <div className="col-sm-3">
-                      <p className="mb-0">Full Name</p>
+                      <p className="mb-0"> Name</p>
                     </div>
                     <div className="col-sm-9">
-                      <p className="text-muted mb-0">Johnatan Smith</p>
+                      <p className="text-muted mb-0">Mohamed</p>
                     </div>
                   </div>
                   <hr />
@@ -56,7 +45,7 @@ export default function Profile() {
                       <p className="mb-0">Email</p>
                     </div>
                     <div className="col-sm-9">
-                      <p className="text-muted mb-0">example@example.com</p>
+                      <p className="text-muted mb-0">mohamed@gmail.com</p>
                     </div>
                   </div>
                   <hr />
@@ -65,27 +54,18 @@ export default function Profile() {
                       <p className="mb-0">Phone</p>
                     </div>
                     <div className="col-sm-9">
-                      <p className="text-muted mb-0">(097) 234-5678</p>
+                      <p className="text-muted mb-0">+20103847578</p>
                     </div>
                   </div>
                   <hr />
-                  <div className="row">
-                    <div className="col-sm-3">
-                      <p className="mb-0">Mobile</p>
-                    </div>
-                    <div className="col-sm-9">
-                      <p className="text-muted mb-0">(098) 765-4321</p>
-                    </div>
-                  </div>
+
                   <hr />
                   <div className="row">
                     <div className="col-sm-3">
                       <p className="mb-0">Address</p>
                     </div>
                     <div className="col-sm-9">
-                      <p className="text-muted mb-0">
-                        Bay Area, San Francisco, CA
-                      </p>
+                      <p className="text-muted mb-0">Shebin El-kom</p>
                     </div>
                   </div>
                 </div>

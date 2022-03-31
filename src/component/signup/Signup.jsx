@@ -2,6 +2,8 @@ import "./signup.css";
 import { useState } from "react";
 import validator from "validator";
 import { Link } from "react-router-dom";
+import { Navbar } from "../navbar/Navbar";
+import Footer from "../footer/Footer";
 
 function Signup() {
   let [email, username, password, phone, address] = ["", "", "", "", ""];
@@ -45,6 +47,7 @@ function Signup() {
 
   return (
     <>
+      <Navbar />
       <div className="signup">
         <div className="container">
           <div className="row  g-0">
@@ -142,7 +145,15 @@ function Signup() {
                     </button>
                   </div>
                   <p className="signin-Link">
-                    Already have an account <Link to="/login">Log In</Link>
+                    Already have an account{" "}
+                    <Link
+                      to="/login"
+                      style={{
+                        color: "white",
+                      }}
+                    >
+                      Log In
+                    </Link>
                   </p>
                 </form>
               </div>
@@ -150,6 +161,7 @@ function Signup() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }
