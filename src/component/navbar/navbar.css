@@ -1,7 +1,7 @@
 .customize-navbar {
     background-color: #fff !important;
-    padding-top: 1.5rem !important;
-    padding-bottom: 1.5rem !important;
+    padding-top: 0.75rem !important;
+    padding-bottom: 0.75rem !important;
 
 }
     
@@ -11,9 +11,8 @@
 
 .customize-navbar .container .navbar-brand {
     position: absolute;
-    left: 50%;
-    -webkit-transform: translateX(-50%);
-    -moz-transform: translateX(-50%);
+    top: -23px;
+    left: 3%;
     transform: translateX(-50%);
 }
 .customize-navbar .container .navbar-nav li .nav-link {
@@ -22,6 +21,8 @@
     transition: all 0.3s;
     padding-right: 0.85rem;
     padding-left: 0.85rem;
+    font-weight: 500;
+    color: rgb(102 102 102 / 55%);
 
 }
 .customize-navbar .container .navbar-nav li .nav-link.active{
@@ -32,44 +33,63 @@
 .customize-navbar .container .navbar-nav li:hover .nav-link{
     color: #5a9b68 !important;
   
-}
+} 
+
 .customize-navbar .container .auth .link {
-    margin-right: 0.5rem;
-    padding: 0.5rem 2rem;
-    border-radius: 5px;
-    -webkit-transition: all 0.4s;
-    -moz-transition: all 0.4s;
-    transition: all 0.4s;
+    margin-right: 1rem;
+    font-weight: 500;
+    color: #adaaa8;
 }
-.customize-navbar .container .auth .link.register {
-    background-color: transparent !important;
-    color: #220003 !important;
-    border: 1px solid #ededed;
-    content: "";
+.customize-navbar .container .auth .btn-login {
+    color: #5a9b68 !important;
+    position: relative; 
+}
+.customize-navbar .container .auth .btn-login::after {
+    content: "/";
+    position: absolute;
+    top: -2px;
+    right: -14px;
+}
+.customize-navbar .container .auth .animate-icon {
     position: relative;
-    isolation: isolate;
-    
-}   
-.customize-navbar .container .auth .link.register::before {
-    content: "Signup";
-    transition: all 0.5s;
+    cursor: pointer;
 }
-.customize-navbar .container .auth .link.register:hover::before {
+.customize-navbar .container .auth .animate-icon .fa {
     color: #fff;
+    background-color: #5a9b68;
+    padding: 6px;
+    border-radius: 50%;
+    width: 30px;
+    text-align: center;
 }
-.customize-navbar .container .auth .link.register::after {
+.customize-navbar .container .auth .animate-icon::after {
     content: "";
+    width: 100%;
+    height: 100%;
+    border: 1px solid #5a9b68;
     position: absolute;
     left: 0px;
     top: 0px;
-    height: 100%;
-    width: 0px;
-    background-color: #bc3942 !important;
+    border-radius: 50%;
+    transform: scale(1);
     transition: all 0.5s;
-    z-index:-1;
+    opacity: 0;
+    
     
 }
+.customize-navbar .container .auth .animate-icon:hover::after {
+    animation: popup 1.3s linear infinite ;
+}
 
-.customize-navbar .container .auth .link.register:hover::after {    
-    width: 100%; 
-}   
+/* animation for icon */
+ @keyframes popup {
+    0% {
+         transform: scale(1);
+         opacity: 1;
+    }
+    100% {
+
+        transform: scale( 1.7 );
+        opacity: 0;
+    }
+} 
