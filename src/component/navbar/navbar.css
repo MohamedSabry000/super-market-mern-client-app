@@ -1,0 +1,74 @@
+.customize-navbar {
+    background-color: #fff !important;
+    padding-top: 1.5rem !important;
+    padding-bottom: 1.5rem !important;
+
+}
+    
+.customize-navbar .container {
+    position: relative;
+}
+
+.customize-navbar .container .navbar-brand {
+    position: absolute;
+    left: 50%;
+    -webkit-transform: translateX(-50%);
+    -moz-transform: translateX(-50%);
+    transform: translateX(-50%);
+}
+.customize-navbar .container .navbar-nav li a {
+    -webkit-transition: all 0.3s;
+    -moz-transition: all 0.3s;
+    transition: all 0.3s;
+    padding-right: 2.5rem;
+    padding-left: 0.5rem;
+}
+.customize-navbar .container .navbar-nav li.active a{
+    color: #5a9b68;
+    font-weight: bold;
+}
+.customize-navbar .container .navbar-nav li:focus a,
+.customize-navbar .container .navbar-nav li:hover a{
+    color: #5a9b68 !important;
+    font-weight: bold;
+}
+.customize-navbar .container .auth a {
+    margin-right: 0.5rem;
+    padding: 0.5rem 2rem;
+    border-radius: 5px;
+    -webkit-transition: all 0.4s;
+    -moz-transition: all 0.4s;
+    transition: all 0.4s;
+}
+.customize-navbar .container .auth a.register {
+    background-color: transparent !important;
+    color: #220003 !important;
+    border: 1px solid #ededed;
+    content: "";
+    position: relative;
+    isolation: isolate;
+    
+}   
+.customize-navbar .container .auth a.register::before {
+    content: "Signup";
+    transition: all 0.5s;
+}
+.customize-navbar .container .auth a.register:hover::before {
+    color: #fff;
+}
+.customize-navbar .container .auth a.register::after {
+    content: "";
+    position: absolute;
+    left: 0px;
+    top: 0px;
+    height: 100%;
+    width: 0px;
+    background-color: #bc3942 !important;
+    transition: all 0.5s;
+    z-index:-1;
+    
+}
+
+.customize-navbar .container .auth a.register:hover::after {    
+    width: 100%; 
+}   
