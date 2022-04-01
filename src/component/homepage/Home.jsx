@@ -60,7 +60,9 @@ function Home() {
             </div>
           </div>
         </div>
+        <button className="btn btn-load">Load More</button>
       </section>
+
       <Footer />
     </>
   );

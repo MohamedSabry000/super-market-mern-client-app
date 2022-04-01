@@ -103,3 +103,13 @@
   resize: none;
   height: 158px;
 }
+section .btn-load {
+  background-color: #5a9b68;
+  display: block;
+
+  width: 15%;
+  margin: auto;
+  color: #fff;
+  padding: 1rem 3rem;
+  text-transform: uppercase;
+}
