@@ -2,14 +2,15 @@ import "./navbar.css";
 import logo from "../../assests/img/img.png";
 import { NavLink } from "react-router-dom";
 import React from "react";
-const Navbar = () => {
+
+const Navbar = ({token}) => {
   return (
     <nav
       className="navbar navbar-expand-lg  navbar-light customize-navbar justify-content-between"
       id="navbar"
     >
       <div className="container">
-        <NavLink to="home" class="navbar-brand">
+        <NavLink to="home" className="navbar-brand">
           <img src={logo} width="70" />
         </NavLink>
         <button
@@ -41,11 +42,14 @@ const Navbar = () => {
                 About
               </NavLink>
             </li>
-            <li className="nav-item">
-              <NavLink className="nav-link" to="profile">
-                Profile
-              </NavLink>
-            </li>
+            {
+              token &&
+                <li className="nav-item">
+                  <NavLink className="nav-link" to="profile">
+                    Profile
+                  </NavLink>
+                </li>
+            }
             <li className="nav-item">
               <NavLink className="nav-link" to="contact">
                 Contact
@@ -54,13 +58,20 @@ const Navbar = () => {
           </ul>
         </div>
 
-        <div class="auth d-flex align-items-center">
-          <NavLink to="login" className="link btn-login">
-            Login
-          </NavLink>
-          <NavLink to="signup" className="link btn-signup">
-            Signup
-          </NavLink>
+        <div className="auth d-flex align-items-center">
+          {
+            !token?
+            <>
+              <NavLink to="/login" className="link btn-login">
+                Login
+              </NavLink>
+              <NavLink to="/signup" className="link btn-signup">
+                Signup
+              </NavLink>
+            </> 
+            : 
+            <button onClick={() => {localStorage.clear();window.location.href = "/login"}} className="link btn-login">Logout</button>
+          }
           <div className="animate-icon">
             <i className="fa fa-user"></i>
           </div>

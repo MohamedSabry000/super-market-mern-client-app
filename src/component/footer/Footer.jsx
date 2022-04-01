@@ -7,11 +7,11 @@ export default function Footer() {
   return (
     <div>
       <footer>
-        <div class="footer">
-          <div class="overlay">
-            <div class="footer-content ">
+        <div className="footer">
+          <div className="overlay">
+            <div className="footer-content ">
               <div>
-                <div class="footer-section links">
+                <div className="footer-section links">
                   <h2>Discover</h2>
                   <h5>
                     <a href="#">Our Team</a>
@@ -29,7 +29,7 @@ export default function Footer() {
                 </div>
               </div>
               <div>
-                <div class="footer-section links">
+                <div className="footer-section links">
                   <h2>Locations</h2>
                   <h5>
                     <a href="#">Shebin</a>
@@ -50,7 +50,7 @@ export default function Footer() {
                 </div>
               </div>
               <div>
-                <div class="footer-section links">
+                <div className="footer-section links">
                   <h2>Brands</h2>
                   <h5>
                     <a href="#">Delta</a>
@@ -71,7 +71,7 @@ export default function Footer() {
                 </div>
               </div>
               <div>
-                <div class="footer-section links">
+                <div className="footer-section links">
                   <h2>Pages</h2>
                   <h5>
                     <a href="/html/home.html">Home</a>
@@ -83,10 +83,10 @@ export default function Footer() {
               </div>
             </div>
 
-            <div class="footer-bottom">
+            <div className="footer-bottom">
               <div>
                 {" "}
-                <div class="copyright">
+                <div className="copyright">
                   <p>
                     <span>
                       Copyright &copy; {`${date}`} All rights reserved{" "}

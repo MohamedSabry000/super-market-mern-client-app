@@ -5,44 +5,89 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 
+import { signUpUser } from "../../api";
+
 function Signup() {
-  let [email, username, password, phone, address] = ["", "", "", "", ""];
+  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
+  const [phone, setPhone] = useState("");
+  const [address, setAddress] = useState("");
+
+  const [showAlert, setShowAlert] = useState(false);
+
   const [emailError, setEmailError] = useState("");
+  const [passwordError, setPasswordError] = useState("");
+
   let usernameChange = (e) => {
     console.log(e.target.value);
-    username = e.target.value;
+    setUsername(e.target.value);
     if (username.length < 3) e.target.style = "border-color:#bc3942";
     else e.target.style = "border-color:#d8e2dc";
   };
   let passwordChange = (e) => {
-    password = e.target.value;
+    setPassword(e.target.value);
     if (password.length < 8) {
       e.target.style = "border-color:#bc3942";
     } else e.target.style = "border-color:#d8e2dc";
   };
   let phoneChange = (e) => {
     console.log(e.target.value);
-    phone = e.target.value;
+    setPhone(e.target.value);
     if (phone.length < 11) e.target.style = "border-color:#bc3942";
     else e.target.style = "border-color:#d8e2dc";
   };
   let addressChange = (e) => {
     console.log(e.target.value);
-    address = e.target.value;
+    setAddress(e.target.value);
     if (address.length < 3) e.target.style = "border-color:#bc3942";
     else e.target.style = "border-color:#d8e2dc";
   };
   let emailChange = (e) => {
-    email = e.target.value;
+    setEmail(e.target.value);
     e.target.style = "border-color:#d8e2dc";
   };
-  let Valid = () => {
+  let validateForm = () => {
     console.log(
       "username:" + username + " password: " + password + " Email : " + email
     );
     if (!validator.isEmail(email)) {
       setEmailError("Please enter a valid Email!");
+      return false;
     } else setEmailError("");
+
+    if (password.length < 8 || username.length < 3 || address.length < 3 || phone.length < 11) {
+      return false;
+    }
+
+    return true;
+  };
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    if (validateForm) {
+      console.log(username, password);
+      await signUpUser({
+        name: username,
+        email,
+        password,
+        address,
+        phone
+      })
+        .then((res) => {
+          console.log(res);
+          if (res.data.token) {
+            // setToken(res.data.token);
+            console.log("123");
+            window.location.href = "/profile";
+          } else {
+            setShowAlert(true);
+          }
+        })
+        .catch((err) => {
+          // setToken(null);
+        });
+    }
   };
 
   return (
@@ -57,7 +102,7 @@ function Signup() {
             <div className="col-6">
               <div className="signup-content">
                 <p className="signup-text">Sign Up</p>
-                <form method="post">
+                <form onSubmit={handleSubmit}>
                   <div className="mb-3 input-container">
                     <label className="form-label" for="username">
                       Username
@@ -137,10 +182,7 @@ function Signup() {
                     />
                   </div>
                   <div className="mb-3 input-container ">
-                    <button
-                      class="btn btn-success ms-auto d-block "
-                      onClick={Valid}
-                    >
+                    <button className="btn btn-success ms-auto d-block ">
                       Signup
                     </button>
                   </div>
