@@ -9,7 +9,7 @@ function MainSection() {
           <div className="intro">
             <h1 className="title">Nature Food</h1>
 
-            <button className="btn btn-product">order now</button>
+            <button className="btn btn-product">add product</button>
           </div>
         </div>
       </section>

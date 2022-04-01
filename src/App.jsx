@@ -3,32 +3,40 @@ import Login from "./component/login/Login";
 import Profile from "./component/profile/Profile";
 import Signup from "./component/signup/Signup";
 import Error from "./component/error/Error";
-
+import Home from "./component/homepage/Home";
+import AddProduct from "./component/addproduct/addproduct";
+import Product from "./component/product/product";
 import React from "react";
 import useToken from "./utils/hooks/useToken";
 
 function App() {
+  const { token, setToken } = useToken();
 
-  const {token, setToken} = useToken();
-
+  <Route path="*" element={<Error />} />;
   return (
     <>
       <Routes>
         <Route path="/" element={<Navigate to="/profile" />} />
         <Route path="/profile" element={<Profile />} />
-        {
-          !token ? 
+        <Route path="/addproduct" element={<AddProduct />} />
+        <Route path="/home" element={<Home />} />
+        <Route path="/product" element={<Product />} />
+        <Route path="/product" element={<Product />}>
+          <Route path=":id" element={<Product />} />
+        </Route>
+
+        {!token ? (
           <>
             <Route path="/profile" element={<Navigate to="/login" />} />
-            <Route path="/login" element={<Login setToken={setToken} />} /> 
+            <Route path="/login" element={<Login setToken={setToken} />} />
             <Route path="/signup" element={<Signup setToken={setToken} />} />
           </>
-          :
+        ) : (
           <>
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/signup" element={<Navigate to="/" />} />
           </>
-        }
+        )}
         <Route path="*" element={<Error />} />
       </Routes>
     </>

@@ -52,7 +52,7 @@
 
 .signup .signup-content .input-container button {
   border-radius: 5px;
-  margin: 50px auto;
+  margin: 15px auto;
   border: none;
   color: white;
   background-color: #343a40;
@@ -61,4 +61,42 @@
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   -o-border-radius: 5px;
+}
+
+.customize-file {
+  width: 90%;
+  margin: auto;
+  padding: 0px 40px 3px 38px;
+
+  background-color: #343a40;
+  border-radius: 5px;
+  position: relative;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  -o-border-radius: 5px;
+}
+.customize-file input[type="file"] {
+  padding-bottom: 8px;
+  width: 90%;
+  /* height: 100%; */
+  opacity: 0;
+}
+span {
+  color: white;
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  top: 6px;
+  font-size: 18px;
+  font-family: tahoma;
+}
+.customize-file:hover::after {
+  display: block;
+  position: absolute;
+  width: 180px;
+  height: 30px;
+
+  top: 0px;
+  left: 200px;
 }

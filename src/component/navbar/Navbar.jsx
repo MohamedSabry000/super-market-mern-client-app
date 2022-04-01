@@ -3,7 +3,7 @@ import logo from "../../assests/img/img.png";
 import { NavLink } from "react-router-dom";
 import React from "react";
 
-const Navbar = ({token}) => {
+const Navbar = ({ token }) => {
   return (
     <nav
       className="navbar navbar-expand-lg  navbar-light customize-navbar justify-content-between"
@@ -28,13 +28,13 @@ const Navbar = ({token}) => {
         <div className="collapse navbar-collapse " id="navbarSupportedContent">
           <ul className="navbar-nav ms-auto me-auto">
             <li className="nav-item">
-              <NavLink className="nav-link active" to="home">
+              <NavLink className="nav-link active" to="/home">
                 Home <span className="sr-only">(current)</span>
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="products">
-                Products
+              <NavLink className="nav-link" to="/product">
+                Product
               </NavLink>
             </li>
             <li className="nav-item">
@@ -42,25 +42,23 @@ const Navbar = ({token}) => {
                 About
               </NavLink>
             </li>
-            {
-              token &&
-                <li className="nav-item">
-                  <NavLink className="nav-link" to="profile">
-                    Profile
-                  </NavLink>
-                </li>
-            }
+            {token && (
+              <li className="nav-item">
+                <NavLink className="nav-link" to="/profile">
+                  Profile
+                </NavLink>
+              </li>
+            )}
             <li className="nav-item">
-              <NavLink className="nav-link" to="contact">
-                Contact
+              <NavLink className="nav-link" to="/addproduct">
+                Add Product
               </NavLink>
             </li>
           </ul>
         </div>
 
         <div className="auth d-flex align-items-center">
-          {
-            !token?
+          {!token ? (
             <>
               <NavLink to="/login" className="link btn-login">
                 Login
@@ -68,10 +66,18 @@ const Navbar = ({token}) => {
               <NavLink to="/signup" className="link btn-signup">
                 Signup
               </NavLink>
-            </> 
-            : 
-            <button onClick={() => {localStorage.clear();window.location.href = "/login"}} className="link btn-login">Logout</button>
-          }
+            </>
+          ) : (
+            <button
+              onClick={() => {
+                localStorage.clear();
+                window.location.href = "/login";
+              }}
+              className="link btn-login"
+            >
+              Logout
+            </button>
+          )}
           <div className="animate-icon">
             <i className="fa fa-user"></i>
           </div>

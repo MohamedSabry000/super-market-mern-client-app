@@ -1,6 +1,7 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BoxLoading } from 'react-loadingg';
+// import { BoxLoading } from "react-loadingg";
+import "../product/product.css";
 
 import { fetchUserData } from "../../api";
 import Footer from "../footer/Footer";
@@ -9,9 +10,8 @@ import { Navbar } from "../navbar/Navbar";
 
 import useToken from "../../utils/hooks/useToken";
 
-
 export default function Profile() {
-  const {token} = useToken();
+  const { token } = useToken();
 
   const [userData, setUserData] = useState(null);
 
@@ -19,7 +19,7 @@ export default function Profile() {
     const getData = async () => {
       await fetchUserData(token)
         .then((res) => {
-          if(res.data.data){
+          if (res.data.data) {
             console.log(res);
             setUserData(res.data.data);
           }
@@ -37,10 +37,11 @@ export default function Profile() {
       <Navbar token={token} />
       <MainSection />
       <section>
-        <div className="container py-5" style={{position: "relative"}}>
-          {
-            !userData ? <BoxLoading />
-            :
+        <div className="container py-5" style={{ position: "relative" }}>
+          {!userData ? (
+            // <BoxLoading />
+            <div></div>
+          ) : (
             <div className="row">
               <div className="col-lg-4">
                 <div className="card mb-4">
@@ -52,7 +53,9 @@ export default function Profile() {
                     />
                     <h5 className="my-3">{userData.name}</h5>
                     <p className="text-muted mb-1">Seller</p>
-                    <p className="text-muted mb-4">{userData.address || null }</p>
+                    <p className="text-muted mb-4">
+                      {userData.address || null}
+                    </p>
                   </div>
                 </div>
               </div>
@@ -64,7 +67,9 @@ export default function Profile() {
                         <p className="mb-0"> Name</p>
                       </div>
                       <div className="col-sm-9">
-                        <p className="text-muted mb-0">{userData.name || null }</p>
+                        <p className="text-muted mb-0">
+                          {userData.name || null}
+                        </p>
                       </div>
                     </div>
                     <hr />
@@ -73,7 +78,9 @@ export default function Profile() {
                         <p className="mb-0">Email</p>
                       </div>
                       <div className="col-sm-9">
-                        <p className="text-muted mb-0">{userData.email || null }</p>
+                        <p className="text-muted mb-0">
+                          {userData.email || null}
+                        </p>
                       </div>
                     </div>
                     <hr />
@@ -82,7 +89,9 @@ export default function Profile() {
                         <p className="mb-0">Phone</p>
                       </div>
                       <div className="col-sm-9">
-                        <p className="text-muted mb-0">{userData.phone || null }</p>
+                        <p className="text-muted mb-0">
+                          {userData.phone || null}
+                        </p>
                       </div>
                     </div>
                     <hr />
@@ -93,14 +102,16 @@ export default function Profile() {
                         <p className="mb-0">Address</p>
                       </div>
                       <div className="col-sm-9">
-                        <p className="text-muted mb-0">{userData.address || null }</p>
+                        <p className="text-muted mb-0">
+                          {userData.address || null}
+                        </p>
                       </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          }
+          )}
         </div>
       </section>
       <Footer />

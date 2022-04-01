@@ -56,7 +56,12 @@ function Signup() {
       return false;
     } else setEmailError("");
 
-    if (password.length < 8 || username.length < 3 || address.length < 3 || phone.length < 11) {
+    if (
+      password.length < 8 ||
+      username.length < 3 ||
+      address.length < 3 ||
+      phone.length < 11
+    ) {
       return false;
     }
 
@@ -72,7 +77,7 @@ function Signup() {
         email,
         password,
         address,
-        phone
+        phone,
       })
         .then((res) => {
           console.log(res);
@@ -180,6 +185,10 @@ function Signup() {
                         addressChange(e);
                       }}
                     />
+                  </div>
+                  <div class="customize-file">
+                    <span>Choose</span>
+                    <input type="file" />
                   </div>
                   <div className="mb-3 input-container ">
                     <button className="btn btn-success ms-auto d-block ">
