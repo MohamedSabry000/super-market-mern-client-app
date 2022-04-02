@@ -3,17 +3,60 @@ import MainSection from "../mainsection/MainSection";
 import { Navbar } from "../navbar/Navbar";
 import "./home.css";
 import productImg from "../../assests/img/product-2-1.jpg";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import useToken from "../../utils/hooks/useToken";
+import { getAllProductsData, getUserProductsReq, removeOneProduct } from "../../api/product";
+import { NavLink } from "react-router-dom";
+import { BoxLoading } from "react-loadingg";
+import AddProduct from "../addproduct/addproduct";
 
 function Home() {
-  const [products, setProduct] = useState([
-    { name: "car", price: 2000, category: "electronic" },
-    { name: "laptop", price: 1200, category: "electronic" },
-    { name: "mobile", price: 50, category: "electronic" },
-    { name: "coffee", price: 90, category: "drinks" },
-    { name: "icream", price: 30, category: "foods" },
-  ]);
-  const productCat = [...new Set(products.map((val) => val.category))];
+  const [products, setProducts] = useState([]);
+  const {token} = useToken();
+
+  useEffect(() => {
+    const getProductData = async () => {
+      await getUserProductsReq(token)
+        .then((res) => {
+          console.log(res.data);
+          setProducts(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    const getAllProducts = async () => {
+      await getAllProductsData()
+        .then((res) => {
+          console.log(res.data);
+          setProducts(res.data.data);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+
+    token ? getProductData() : getAllProducts();
+  }, []);
+
+  const deleteProduct = (id) => {
+    const removeProduct = async (id) => {
+      await removeOneProduct(id)
+        .then((res) => {
+          setProducts(products.filter((product) => product._id !== id));
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    };
+    removeProduct(id);
+  }
+
+  const updateProduct = (prod) => {
+    return <AddProduct product={prod} />
+  }
+
   return (
     <>
       <Navbar />
@@ -23,41 +66,52 @@ function Home() {
           <h1 className="title text-center">Product</h1>
           <div className="row">
             {/* show products */}
-            <div className="col-12 col-lg-12">
-              <div className="content">
-                <div className="row">
-                  {products.map((product, key) => {
-                    return (
+            {!products.length ? (
+              <BoxLoading />
+            ) : (
+              <div className="col-12 col-lg-12">
+                <div className="content">
+                  <div className="row">
+                    {products.map((product, key) => (
                       <div className="col-4 mb-3" key={key}>
                         <div className="card pb-5 ">
-                          <img className="card-img-top" src={productImg} />
+                          <img
+                            className="card-img-top"
+                            src={product.avatar}
+                            alt={product.name}
+                          />
                           <div className="card-body">
                             <h5 className="card-title">{product.name}</h5>
                             <p className="card-text description">
-                              Some quick example text to build on the card title
-                              and make up the bulk of the card's content.
+                              {product.description}
                             </p>
                             <p className="price">
                               <i className="fa fa-usd"></i>
                               {product.price}
                             </p>
-                            <a href="#" className="button btn-view">
-                              <i className="fa fa-eye"></i> View
-                            </a>
-                            <a href="#" className="button btn-edit">
-                              <i className="fa fa-edit"></i> Edit
-                            </a>
-                            <a href="#" className="button btn-delete">
-                              <i className="fa fa-close"></i> Delete
-                            </a>
+                            {token && (
+                              <>
+                                <NavLink className="button btn-view" to={`/product/${product._id}`}>
+                                  <i className="fa fa-eye"></i> View
+                                </NavLink>
+
+                                <button className="button btn-edit" onClick={() => updateProduct(product)}>
+                                  <i className="fa fa-edit"></i> Edit
+                                </button>
+
+                                <button className="button btn-delete" onClick={() => deleteProduct(product._id)}>
+                                  <i className="fa fa-close"></i> Delete
+                                </button>
+                              </>
+                            )}
                           </div>
                         </div>
                       </div>
-                    );
-                  })}
+                    ))}
+                  </div>
                 </div>
               </div>
-            </div>
+            )}
           </div>
         </div>
         <button className="btn btn-load">Load More</button>

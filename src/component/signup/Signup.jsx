@@ -5,7 +5,8 @@ import { Link } from "react-router-dom";
 import { Navbar } from "../navbar/Navbar";
 import Footer from "../footer/Footer";
 
-import { signUpUser } from "../../api";
+import { signUpUser, updateProfileAvatar } from "../../api";
+import useToken from "../../utils/hooks/useToken";
 
 function Signup() {
   const [email, setEmail] = useState("");
@@ -17,7 +18,9 @@ function Signup() {
   const [showAlert, setShowAlert] = useState(false);
 
   const [emailError, setEmailError] = useState("");
-  const [passwordError, setPasswordError] = useState("");
+  const [avatarFile, setAvatarFile] = useState(null);
+
+  const { token, setToken } = useToken();
 
   let usernameChange = (e) => {
     console.log(e.target.value);
@@ -47,6 +50,26 @@ function Signup() {
     setEmail(e.target.value);
     e.target.style = "border-color:#d8e2dc";
   };
+
+  const onFileChange = (e) => {
+    console.log(" On Change: ", e.target.files[0]);
+    setAvatarFile(e.target.files[0]);
+  }
+
+  const onFileUpload = () => { 
+    // Create an object of formData 
+    const formData = new FormData(); 
+   
+    // Update the formData object 
+    formData.append( 
+      "myFile", 
+      avatarFile, 
+      avatarFile.name 
+    );
+    console.log(formData);
+    return formData;
+  }
+
   let validateForm = () => {
     console.log(
       "username:" + username + " password: " + password + " Email : " + email
@@ -82,15 +105,22 @@ function Signup() {
         .then((res) => {
           console.log(res);
           if (res.data.token) {
-            // setToken(res.data.token);
+            setToken(res.data.token);
+            if(avatarFile){
+              const fileUpload = onFileUpload();
+              updateProfileAvatar(res.data.token, fileUpload)
+            }
+            
+
             console.log("123");
-            window.location.href = "/profile";
+
+            // window.location.href = "/profile";
           } else {
             setShowAlert(true);
           }
         })
         .catch((err) => {
-          // setToken(null);
+          setToken(null);
         });
     }
   };
@@ -109,7 +139,7 @@ function Signup() {
                 <p className="signup-text">Sign Up</p>
                 <form onSubmit={handleSubmit}>
                   <div className="mb-3 input-container">
-                    <label className="form-label" for="username">
+                    <label className="form-label" htmlFor="username">
                       Username
                     </label>
                     <input
@@ -124,7 +154,7 @@ function Signup() {
                     />
                   </div>
                   <div className="mb-3 input-container">
-                    <label className="form-label" for="password">
+                    <label className="form-label" htmlFor="password">
                       Password
                     </label>
                     <input
@@ -139,7 +169,7 @@ function Signup() {
                     />
                   </div>
                   <div className="mb-3 input-container">
-                    <label className="form-label" for="email">
+                    <label className="form-label" htmlFor="email">
                       Email
                     </label>
                     <input
@@ -157,7 +187,7 @@ function Signup() {
                     </p>
                   </div>
                   <div className="mb-3 input-container">
-                    <label className="form-label" for="phone">
+                    <label className="form-label" htmlFor="phone">
                       Phone number
                     </label>
                     <input
@@ -172,7 +202,7 @@ function Signup() {
                     />
                   </div>
                   <div className="mb-3 input-container">
-                    <label className="form-label" for="address">
+                    <label className="form-label" htmlFor="address">
                       Address
                     </label>
                     <input
@@ -186,9 +216,9 @@ function Signup() {
                       }}
                     />
                   </div>
-                  <div class="customize-file">
+                  <div className="customize-file">
                     <span>Choose</span>
-                    <input type="file" />
+                    <input type="file" name="avatar" onChange={onFileChange} />
                   </div>
                   <div className="mb-3 input-container ">
                     <button className="btn btn-success ms-auto d-block ">

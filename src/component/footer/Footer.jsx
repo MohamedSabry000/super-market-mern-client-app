@@ -6,11 +6,11 @@ export default function Footer() {
 
   return (
     <>
-      <footer class="footer">
-        <div class="container">
-          <div class="row footer-content">
-            <div class="col-6 col-lg-3">
-              <div class="footer-section links">
+      <footer className="footer">
+        <div className="container">
+          <div className="row footer-content">
+            <div className="col-6 col-lg-3">
+              <div className="footer-section links">
                 <h2>Discover</h2>
                 <h5>
                   <a href="#">Our Team</a>
@@ -27,8 +27,8 @@ export default function Footer() {
                 </h5>
               </div>
             </div>
-            <div class="col-6 col-lg-3">
-              <div class="footer-section links">
+            <div className="col-6 col-lg-3">
+              <div className="footer-section links">
                 <h2>Locations</h2>
                 <h5>
                   <a href="#">Shebin</a>
@@ -48,8 +48,8 @@ export default function Footer() {
                 </h5>
               </div>
             </div>
-            <div class="col-6 col-lg-3">
-              <div class="footer-section links">
+            <div className="col-6 col-lg-3">
+              <div className="footer-section links">
                 <h2>Brands</h2>
                 <h5>
                   <a href="#">Delta</a>
@@ -69,8 +69,8 @@ export default function Footer() {
                 </h5>
               </div>
             </div>
-            <div class="col-6 col-lg-3">
-              <div class="footer-section links">
+            <div className="col-6 col-lg-3">
+              <div className="footer-section links">
                 <h2>Pages</h2>
                 <h5>
                   <a href="/html/home.html">Home</a>
@@ -83,7 +83,7 @@ export default function Footer() {
           </div>
         </div>
         {/* copy right section */}
-        <div class="footer-bottom">
+        <div className="footer-bottom">
           Copyright &copy; {`${date}`} All rights reserved{" "}
         </div>
       </footer>

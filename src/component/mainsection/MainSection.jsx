@@ -1,6 +1,7 @@
 import "./mainsection.css";
 import "./MainSection.jsx";
 import React from "react";
+import { NavLink } from "react-router-dom";
 function MainSection() {
   return (
     <>
@@ -9,7 +10,10 @@ function MainSection() {
           <div className="intro">
             <h1 className="title">Nature Food</h1>
 
-            <button className="btn btn-product">add product</button>
+            <NavLink className="btn btn-product" to="/addproduct">
+                Add Product
+            </NavLink>
+            {/* <button className="btn btn-product" >add product</button> */}
           </div>
         </div>
       </section>

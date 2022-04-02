@@ -2,8 +2,10 @@ import "./navbar.css";
 import logo from "../../assests/img/img.png";
 import { NavLink } from "react-router-dom";
 import React from "react";
+import useToken from "../../utils/hooks/useToken";
 
-const Navbar = ({ token }) => {
+const Navbar = () => {
+  const { token } = useToken();
   return (
     <nav
       className="navbar navbar-expand-lg  navbar-light customize-navbar justify-content-between"
@@ -49,11 +51,6 @@ const Navbar = ({ token }) => {
                 </NavLink>
               </li>
             )}
-            <li className="nav-item">
-              <NavLink className="nav-link" to="/addproduct">
-                Add Product
-              </NavLink>
-            </li>
           </ul>
         </div>
 

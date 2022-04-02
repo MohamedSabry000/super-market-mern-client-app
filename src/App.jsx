@@ -17,8 +17,8 @@ function App() {
     <>
       <Routes>
         <Route path="/" element={<Navigate to="/profile" />} />
-        <Route path="/profile" element={<Profile />} />
-        <Route path="/addproduct" element={<AddProduct />} />
+        
+        
         <Route path="/home" element={<Home />} />
         <Route path="/product" element={<Product />} />
         <Route path="/product" element={<Product />}>
@@ -28,11 +28,16 @@ function App() {
         {!token ? (
           <>
             <Route path="/profile" element={<Navigate to="/login" />} />
+            <Route path="/addproduct" element={<Navigate to="/login" />} />
+            
             <Route path="/login" element={<Login setToken={setToken} />} />
             <Route path="/signup" element={<Signup setToken={setToken} />} />
           </>
         ) : (
           <>
+            <Route path="/profile" element={<Profile />} />
+            <Route path="/addproduct" element={<AddProduct />} />
+
             <Route path="/login" element={<Navigate to="/" />} />
             <Route path="/signup" element={<Navigate to="/" />} />
           </>
