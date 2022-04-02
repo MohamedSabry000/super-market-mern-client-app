@@ -10,6 +10,7 @@ import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
 import { getProductDataReq } from "../../api/product";
 import { fetchSpecificUserData } from "../../api";
+
 function Productt() {
   const { id } = useParams();
   const [product, setProduct] = useState(null);
@@ -49,7 +50,7 @@ function Productt() {
                   <div className="card mb-4">
                     <div className="card-body text-center">
                       <img
-                        src={product.avatar||''}
+                        src={product.avatar || ""}
                         alt="avatar"
                         className="rounded-circle img-fluid"
                       />
@@ -94,7 +95,7 @@ function Productt() {
                         </div>
                         <div className="col-sm-9">
                           <p className="text-muted mb-0">
-                            { product.description }
+                            {product.description}
                           </p>
                         </div>
                       </div>

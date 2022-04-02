@@ -9,10 +9,12 @@ import { getAllProductsData, getUserProductsReq, removeOneProduct } from "../../
 import { NavLink } from "react-router-dom";
 import { BoxLoading } from "react-loadingg";
 import AddProduct from "../addproduct/addproduct";
+import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [products, setProducts] = useState([]);
   const {token} = useToken();
+  let navigate = useNavigate(); 
 
   useEffect(() => {
     const getProductData = async () => {
@@ -54,7 +56,8 @@ function Home() {
   }
 
   const updateProduct = (prod) => {
-    return <AddProduct product={prod} />
+    console.log(prod);
+    navigate('/addproduct/' + prod._id);
   }
 
   return (

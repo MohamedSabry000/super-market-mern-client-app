@@ -36,10 +36,11 @@ export const removeOneProduct = async (id, token) => {
 };
 
 export const updateProductReq = async (id, token, data) => {
+    console.log(data);
     return axios.post(`http://localhost:5000/api/v1/product/${id}`, {
         headers: {
         "Content-Type": "application/json",
         authorization: `Bearer ${token}`,
-        }, body: JSON.Stringify(data)
+        }, body: JSON.stringify(data)
     });
 };

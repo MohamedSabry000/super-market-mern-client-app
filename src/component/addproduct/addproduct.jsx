@@ -3,10 +3,14 @@ import MainSection from "../mainsection/MainSection";
 import { Navbar } from "../navbar/Navbar";
 import "./addproduct.css";
 import useToken from "../../utils/hooks/useToken";
-import { createProductReq, updateProductReq } from "../../api/product";
+import { createProductReq, getProductDataReq, updateProductReq } from "../../api/product";
 import { useState, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
-function AddProduct(prod) {
+function AddProduct() {
+
+  const { id } = useParams();
+
   const { token } = useToken();
   const [name, setName] = useState("");
   const [price, setPrice] = useState("");
@@ -14,30 +18,31 @@ function AddProduct(prod) {
   const [description, setDescription] = useState("");
   const [avatar, setAvatar] = useState("");
 
+  useEffect(() => {
+    const fetchData = async () => {
+      await getProductDataReq(id).then((res) => {
+        setName(res.data.data.title);
+        setPrice(res.data.data.price);
+        setTag(res.data.data.tag);
+        setDescription(res.data.data.description);
+        setAvatar(res.data.data.avatar);
+      });
+    }
+    if (id) {
+      fetchData();
+    }
+  }, []);
+
   let validateForm = () => {
     if (name || price || tag || description) return false;
 
     return true;
   };
 
-  useEffect(() => {
-
-    const updateCase = () => {
-      setName(prod.name); 
-      setPrice(prod.price); 
-      setTag(prod.tag); 
-      setDescription(prod.description); 
-      // setName(prod.name); 
-    } 
-
-    updateCase();
-    
-  }, []);
-
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (validateForm) {
-      if(!prod){
+      if(!id) {
         await createProductReq({
           title: name,
           price,
@@ -51,7 +56,7 @@ function AddProduct(prod) {
           }
         });
       } else {
-        await updateProductReq(prod._id, token, {
+        await updateProductReq(id, token, {
           title: name,
           price,
           description,
@@ -83,6 +88,7 @@ function AddProduct(prod) {
               type="text"
               className="form-control"
               id="name"
+              value={name}
               onChange={(e) => setName(e.target.value)}
             />
           </div>
@@ -94,6 +100,7 @@ function AddProduct(prod) {
               type="number"
               className="form-control"
               id="price"
+              value={price}
               onChange={(e) => setPrice(e.target.value)}
             />
           </div>
@@ -105,6 +112,7 @@ function AddProduct(prod) {
               type="string"
               className="form-control"
               id="tag"
+              value={tag}
               onChange={(e) => setTag(e.target.value)}
             />
           </div>
@@ -116,6 +124,7 @@ function AddProduct(prod) {
               type="text"
               className="form-control"
               id="description"
+              value={description}
               onChange={(e) => setDescription(e.target.value)}
             ></textarea>
           </div>
@@ -126,7 +135,7 @@ function AddProduct(prod) {
 
           <button className="btn add-btn ms-auto d-block ">
             {
-              prod? "Update" : "Add"
+              id? "Update" : "Add"
             } 
             </button>
         </form>
