@@ -18,7 +18,7 @@ function Signup() {
   const [showAlert, setShowAlert] = useState(false);
 
   const [emailError, setEmailError] = useState("");
-  const [avatarFile, setAvatarFile] = useState(null);
+  const [avatar, setAvatar] = useState(null);
 
   const { token, setToken } = useToken();
 
@@ -53,21 +53,30 @@ function Signup() {
 
   const onFileChange = (e) => {
     console.log(" On Change: ", e.target.files[0]);
-    setAvatarFile(e.target.files[0]);
+    setAvatar(e.target.files[0]);
   }
 
-  const onFileUpload = () => { 
-    // Create an object of formData 
-    const formData = new FormData(); 
-   
-    // Update the formData object 
-    formData.append( 
-      "myFile", 
-      avatarFile, 
-      avatarFile.name 
-    );
-    console.log(formData);
-    return formData;
+  const uploadAvatar = (localToken) => {
+    console.log("upadate avatar");
+    if(avatar){
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+
+      console.log(formData);
+      const updateAvatarReq = async () => {
+        await updateProfileAvatar(localToken, formData)
+          .then((res) => {
+            console.log(res.data);
+
+            setAvatar(res.data.data.avatar)
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      updateAvatarReq();
+    }
   }
 
   let validateForm = () => {
@@ -106,15 +115,12 @@ function Signup() {
           console.log(res);
           if (res.data.token) {
             setToken(res.data.token);
-            if(avatarFile){
-              const fileUpload = onFileUpload();
-              updateProfileAvatar(res.data.token, fileUpload)
+            if(avatar){
+              uploadAvatar(res.data.token);
             }
-            
-
             console.log("123");
 
-            // window.location.href = "/profile";
+            window.location.href = "/profile";
           } else {
             setShowAlert(true);
           }

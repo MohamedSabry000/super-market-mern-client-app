@@ -3,17 +3,20 @@ import { useParams } from "react-router-dom";
 import { BoxLoading } from "react-loadingg";
 import "../product/product.css";
 
-import { fetchUserData } from "../../api";
+import { fetchUserData, updateProfileAvatar } from "../../api";
 import Footer from "../footer/Footer";
 import MainSection from "../mainsection/MainSection";
 import { Navbar } from "../navbar/Navbar";
 
 import useToken from "../../utils/hooks/useToken";
+import { Form } from "react-bootstrap";
 
 export default function Profile() {
   const { token } = useToken();
 
   const [userData, setUserData] = useState(null);
+  const [avatar, setAvatar] = useState(null);
+  const [avatarShown, setAvatarShown] = useState(null);
 
   useEffect(() => {
     const getData = async () => {
@@ -22,6 +25,8 @@ export default function Profile() {
           if (res.data.data) {
             console.log(res);
             setUserData(res.data.data);
+            setAvatar(res.data.data.avatar)
+            setAvatarShown(res.data.data.avatar)
           }
         })
         .catch((err) => {
@@ -31,6 +36,28 @@ export default function Profile() {
     getData();
     console.log(userData);
   }, []);
+
+  const updateAvatar = () => {
+    console.log("upadate avatar");
+    if(avatar){
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+
+      console.log(formData);
+      const updateAvatarReq = async () => {
+        await updateProfileAvatar(token, formData)
+          .then((res) => {
+            setAvatarShown(res.data.data.avatar)
+
+            console.log(res.data.data.avatar);
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+        }
+      updateAvatarReq();
+    }
+  }
 
   return (
     <>
@@ -47,7 +74,7 @@ export default function Profile() {
                 <div className="card mb-4">
                   <div className="card-body text-center">
                     <img
-                      src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava6.webp"
+                      src={avatarShown}
                       alt="avatar"
                       className="rounded-circle img-fluid"
                     />
@@ -56,6 +83,13 @@ export default function Profile() {
                     <p className="text-muted mb-4">
                       {userData.address || null}
                     </p>
+                    <Form.Group controlId="formFileSm" className="mb-3">
+                      <Form.Label>Select Image</Form.Label>
+                      <Form.Control type="file" name="avatar" size="sm" onChange={(e)=>setAvatar(e.target.files[0])} />
+                      <div className="input-group-append mt-3">
+                        <button className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onClick={updateAvatar}>Submit</button>
+                      </div>
+                    </Form.Group>
                   </div>
                 </div>
               </div>
