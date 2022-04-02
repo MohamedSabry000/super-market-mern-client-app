@@ -25,7 +25,7 @@ export default function Profile() {
           if (res.data.data) {
             console.log(res);
             setUserData(res.data.data);
-            setAvatar(res.data.data.avatar)
+            // setAvatar(res.data.data.avatar)
             setAvatarShown(res.data.data.avatar)
           }
         })

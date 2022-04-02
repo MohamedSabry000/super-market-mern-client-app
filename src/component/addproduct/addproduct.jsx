@@ -3,9 +3,10 @@ import MainSection from "../mainsection/MainSection";
 import { Navbar } from "../navbar/Navbar";
 import "./addproduct.css";
 import useToken from "../../utils/hooks/useToken";
-import { createProductReq, getProductDataReq, updateProductReq } from "../../api/product";
+import { createProductReq, getProductDataReq, updateProductAvatar, updateProductReq } from "../../api/product";
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
+import { updateProfileAvatar } from "../../api";
 
 function AddProduct() {
 
@@ -16,7 +17,7 @@ function AddProduct() {
   const [price, setPrice] = useState("");
   const [tag, setTag] = useState("");
   const [description, setDescription] = useState("");
-  const [avatar, setAvatar] = useState("");
+  const [avatar, setAvatar] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -25,13 +26,36 @@ function AddProduct() {
         setPrice(res.data.data.price);
         setTag(res.data.data.tag);
         setDescription(res.data.data.description);
-        setAvatar(res.data.data.avatar);
+        // setAvatar(res.data.data.avatar);
       });
     }
     if (id) {
       fetchData();
     }
   }, []);
+
+  const uploadAvatar = (id, localToken) => {
+    console.log("upadate product avatar");
+    if(avatar){
+      const formData = new FormData();
+      formData.append("avatar", avatar);
+
+      console.log(formData);
+      const updateAvatarReq = async () => {
+        await updateProductAvatar(id, localToken, formData)
+          .then((res) => {
+            console.log(res.data);
+
+            setAvatar(res.data.data.avatar)
+
+          })
+          .catch((err) => {
+            console.log(err);
+          });
+      }
+      updateAvatarReq();
+    }
+  }
 
   let validateForm = () => {
     if (name || price || tag || description) return false;
@@ -51,6 +75,10 @@ function AddProduct() {
         }, token).then((res) => {
           console.log(res);
           if (res.data.data) {
+
+            if(avatar)
+              uploadAvatar(res.data.data._id, token);
+
             console.log("123");
             window.location.href = `/product/${res.data.data._id}`;
           }
@@ -64,6 +92,10 @@ function AddProduct() {
         }).then((res) => {
           console.log(res);
           if (res.data.data) {
+
+            if(avatar)
+              uploadAvatar(res.data.data._id, token);
+
             console.log("123");
             window.location.href = `/product/${res.data.data._id}`;
           }

@@ -44,3 +44,9 @@ export const updateProductReq = async (id, token, data) => {
         }, body: JSON.stringify(data)
     });
 };
+
+export const updateProductAvatar = async (id, token, formData) => {
+    console.log("ello Form Data: ", formData);
+    return axios.patch(`http://localhost:5000/api/v1/product/${id}`, formData, 
+    { headers: { "Content-Type": "multipart/form-data", authorization: `Bearer ${token}` }})  
+};
