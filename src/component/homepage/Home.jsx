@@ -7,7 +7,7 @@ import { useState, useEffect } from "react";
 import useToken from "../../utils/hooks/useToken";
 import { getAllProductsData, getUserProductsReq, removeOneProduct } from "../../api/product";
 import { NavLink } from "react-router-dom";
-import { BoxLoading } from "react-loadingg";
+import { BoxLoading } from "react-loading";
 import AddProduct from "../addproduct/addproduct";
 import { useNavigate } from "react-router-dom";
 
