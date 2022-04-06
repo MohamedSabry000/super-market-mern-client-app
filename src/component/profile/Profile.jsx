@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BoxLoading } from "react-loadingg";
+import { BoxLoading } from "react-loading";
 import "../product/product.css";
 
 import { fetchUserData, updateProfileAvatar } from "../../api";
