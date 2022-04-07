@@ -2,13 +2,13 @@ import Footer from "../footer/Footer";
 import MainSection from "../mainsection/MainSection";
 import { Navbar } from "../navbar/Navbar";
 import "./home.css";
-import productImg from "../../assests/img/product-2-1.jpg";
+// import productImg from "../../assests/img/product-2-1.jpg";
 import { useState, useEffect } from "react";
 import useToken from "../../utils/hooks/useToken";
 import { getAllProductsData, getUserProductsReq, removeOneProduct } from "../../api/product";
 import { NavLink } from "react-router-dom";
-import { BoxLoading } from "react-loadingg";
-import AddProduct from "../addproduct/addproduct";
+// import { BoxLoading } from "react-loadingg";
+// import AddProduct from "../addproduct/addproduct";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
@@ -40,7 +40,7 @@ function Home() {
     };
 
     token ? getProductData() : getAllProducts();
-  }, []);
+  }, [token]);
 
   const deleteProduct = (id) => {
     const removeProduct = async (id) => {
@@ -70,7 +70,7 @@ function Home() {
           <div className="row">
             {/* show products */}
             {!products.length ? (
-              <BoxLoading />
+              <div></div>
             ) : (
               <div className="col-12 col-lg-12">
                 <div className="content">

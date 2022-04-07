@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { BoxLoading } from "react-loadingg";
+// import { useParams } from "react-router-dom";
+// import { BoxLoading } from "react-loadingg";
 import "../product/product.css";
 
 import { fetchUserData, updateProfileAvatar } from "../../api";
@@ -35,7 +35,7 @@ export default function Profile() {
     };
     getData();
     console.log(userData);
-  }, []);
+  }, [token, userData]);
 
   const updateAvatar = () => {
     console.log("upadate avatar");
@@ -66,8 +66,8 @@ export default function Profile() {
       <section>
         <div className="container py-5" style={{ position: "relative" }}>
           {!userData ? (
-            <BoxLoading />
-            // <div></div>
+              <div></div>
+              // <div></div>
           ) : (
             <div className="row">
               <div className="col-lg-4">

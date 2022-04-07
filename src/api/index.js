@@ -33,7 +33,7 @@ export const signUpUser = async (data) => {
 };
 
 export const updateProfileAvatar = async (token, formData) => {
-console.log("ello Form Data: ", formData);
+console.log("Hello Form Data: ", formData);
     return axios.post(`http://localhost:5000/api/v1/user/avatar`, formData, 
     { headers: { "Content-Type": "multipart/form-data", authorization: `Bearer ${token}` }})  
 };
