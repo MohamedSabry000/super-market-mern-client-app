@@ -2,9 +2,13 @@ import Footer from "../footer/Footer";
 import MainSection from "../mainsection/MainSection";
 import { Navbar } from "../navbar/Navbar";
 
+<<<<<<< HEAD
 import { BoxLoading } from "react-loading";
+=======
+// import { BoxLoading } from "react-loadingg";
+>>>>>>> 79ff16de2d431b22e1809c857eb7fc18ca26567c
 
-import fruit from "../../assests/img/product-2-1.jpg";
+// import fruit from "../../assests/img/product-2-1.jpg";
 import "./product.css";
 import { useParams } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -33,7 +37,7 @@ function Productt() {
         });
     };
     getProductData();
-  }, []);
+  }, [id]);
 
   return (
     <>
@@ -43,8 +47,8 @@ function Productt() {
         <div className="container py-5">
           <div className="row">
             {!product ? (
-              <BoxLoading />
-            ) : (
+              <div></div>
+              ) : (
               <>
                 <div className="col-lg-4">
                   <div className="card mb-4">
