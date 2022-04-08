@@ -3,9 +3,7 @@ import axios from "axios";
 export const loginUser = async (credentials) => {
   console.log(JSON.stringify(credentials));
   return axios.post("http://localhost:5000/api/v1/user/login", {
-    headers: {
-      "Content-Type": "application/json",
-    },
+    headers: { "Content-Type": "application/json" },
     body: JSON.stringify(credentials),
   });
 };

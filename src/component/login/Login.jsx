@@ -1,7 +1,6 @@
 import "./login.css";
 
-import { Link, useNavigate } from "react-router-dom";
-import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
 import { useState } from "react";
 
 import { loginUser } from "../../api";
@@ -45,7 +44,6 @@ function Login({ setToken }) {
         } else {
           setShowAlert(true);
         }
-        
       })
       .catch((err) => {
         setToken(null);

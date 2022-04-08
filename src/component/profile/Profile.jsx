@@ -23,7 +23,7 @@ export default function Profile() {
       await fetchUserData(token)
         .then((res) => {
           if (res.data.data) {
-            console.log(res);
+            // console.log(res);
             setUserData(res.data.data);
             // setAvatar(res.data.data.avatar)
             setAvatarShown(res.data.data.avatar)
@@ -34,8 +34,8 @@ export default function Profile() {
         });
     };
     getData();
-    console.log(userData);
-  }, [token, userData]);
+    // console.log(userData);
+  }, []);
 
   const updateAvatar = () => {
     console.log("upadate avatar");
@@ -43,13 +43,13 @@ export default function Profile() {
       const formData = new FormData();
       formData.append("avatar", avatar);
 
-      console.log(formData);
+      // console.log(formData);
       const updateAvatarReq = async () => {
         await updateProfileAvatar(token, formData)
           .then((res) => {
             setAvatarShown(res.data.data.avatar)
 
-            console.log(res.data.data.avatar);
+            // console.log(res.data.data.avatar);
           })
           .catch((err) => {
             console.log(err);

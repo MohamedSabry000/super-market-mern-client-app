@@ -33,7 +33,7 @@ function Productt() {
         });
     };
     getProductData();
-  }, [id]);
+  }, [id, product]);
 
   return (
     <>
@@ -52,7 +52,7 @@ function Productt() {
                       <img
                         src={product.avatar || ""}
                         alt="avatar"
-                        className="rounded-circle img-fluid"
+                        className="product-avatar img-fluid"
                       />
                       <h5 className="my-3">Type: {product.title}</h5>
                       <p className="text-muted mb-1">Seller : {owner?.name}</p>

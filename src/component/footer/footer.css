@@ -31,7 +31,13 @@
   padding-bottom: 15px;
 }
 
-.footer .footer-content .links h5 a {
+.footer .footer-content ul{
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.footer .footer-content .links a {
   padding-top: 10px;
   display: block;
   font-size: 14px;
@@ -40,7 +46,7 @@
   text-decoration: none;
 }
 
-.footer .footer-content .links h5 a:hover {
+.footer .footer-content .links a:hover {
   color: white;
   margin-left: 15px;
   transition: all 0.3s;

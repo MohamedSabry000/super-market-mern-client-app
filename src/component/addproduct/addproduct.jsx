@@ -5,12 +5,13 @@ import "./addproduct.css";
 import useToken from "../../utils/hooks/useToken";
 import { createProductReq, getProductDataReq, updateProductAvatar, updateProductReq } from "../../api/product";
 import { useState, useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { updateProfileAvatar } from "../../api";
+import { useParams, useNavigate } from "react-router-dom";
+// import { updateProfileAvatar } from "../../api";
 
 function AddProduct() {
 
   const { id } = useParams();
+  let navigate  = useNavigate();
 
   const { token } = useToken();
   const [name, setName] = useState("");
@@ -58,50 +59,52 @@ function AddProduct() {
   }
 
   let validateForm = () => {
-    if (name || price || tag || description) return false;
-
+    if (name.length<=0 || price<0 || tag.length<=0 || description.length<=0) return false;
     return true;
   };
 
+  const createProduct = async () => {
+    return await createProductReq({
+      title: name,
+      price,
+      description,
+      tag,
+    }, token).then((res) => {
+      console.log(res);
+      if (res.data.data) {
+        if(avatar){
+          uploadAvatar(res.data.data._id, token);
+        }
+        console.log("123");
+        navigate(`/product/${res.data.data._id}`, { replace: true });
+      }
+    });
+  }
+
+  const updateProduct = async () => {
+    return await updateProductReq(id, token, {
+      title: name,
+      price,
+      description,
+      tag,
+    }).then((res) => {
+      console.log(res);
+      if (res.data.data) {
+
+        if(avatar){
+          console.log( res.data.data._id);
+          uploadAvatar(res.data.data._id, token);
+        }
+
+        console.log("123");
+        navigate(`/product/${res.data.data._id}`, { replace: true });
+      }
+    });
+  }
+
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (validateForm) {
-      if(!id) {
-        await createProductReq({
-          title: name,
-          price,
-          description,
-          tag,
-        }, token).then((res) => {
-          console.log(res);
-          if (res.data.data) {
-
-            if(avatar)
-              uploadAvatar(res.data.data._id, token);
-
-            console.log("123");
-            window.location.href = `/product/${res.data.data._id}`;
-          }
-        });
-      } else {
-        await updateProductReq(id, token, {
-          title: name,
-          price,
-          description,
-          tag,
-        }).then((res) => {
-          console.log(res);
-          if (res.data.data) {
-
-            if(avatar)
-              uploadAvatar(res.data.data._id, token);
-
-            console.log("123");
-            window.location.href = `/product/${res.data.data._id}`;
-          }
-        });
-      }
-    }
+    validateForm() && (!id? createProduct() : updateProduct()); 
   };
   
 
