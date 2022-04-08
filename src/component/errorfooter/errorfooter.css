@@ -1,0 +1,21 @@
+body {
+  height: 100%;
+}
+.errorfooter .footer-bottom {
+  background-image: url(../../assests//img/footer-bg-1-2.png);
+  background-color: rgb(49, 49, 49);
+  color: white;
+  width: 100%;
+  text-align: center;
+  padding: 2rem 0px;
+  position: relative;
+  z-index: 1;
+}
+.footer .footer-bottom span {
+  color: white;
+}
+.errorfooter {
+  bottom: 0;
+  position: absolute;
+  width: 100%;
+}

@@ -9,6 +9,7 @@ import AddProduct from "./component/addproduct/addproduct";
 import Product from "./component/product/product";
 import React from "react";
 import useToken from "./utils/hooks/useToken";
+import Arrow from "./component/arrow/Arrow";
 
 function App() {
   const { token, setToken } = useToken();
@@ -54,6 +55,7 @@ function App() {
         )}
         <Route path="*" element={<Error />} />
       </Routes>
+      <Arrow />
     </>
   );
 }
