@@ -5,16 +5,20 @@ import "./home.css";
 import productImg from "../../assests/img/product-2-1.jpg";
 import { useState, useEffect } from "react";
 import useToken from "../../utils/hooks/useToken";
-import { getAllProductsData, getUserProductsReq, removeOneProduct } from "../../api/product";
+import {
+  getAllProductsData,
+  getUserProductsReq,
+  removeOneProduct,
+} from "../../api/product";
 import { NavLink } from "react-router-dom";
-import { BoxLoading } from "react-loadingg";
+// import { BoxLoading } from "react-loadingg";
 import AddProduct from "../addproduct/addproduct";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
   const [products, setProducts] = useState([]);
-  const {token} = useToken();
-  let navigate = useNavigate(); 
+  const { token } = useToken();
+  let navigate = useNavigate();
 
   useEffect(() => {
     const getProductData = async () => {
@@ -53,12 +57,12 @@ function Home() {
         });
     };
     removeProduct(id);
-  }
+  };
 
   const updateProduct = (prod) => {
     console.log(prod);
-    navigate('/addproduct/' + prod._id);
-  }
+    navigate("/addproduct/" + prod._id);
+  };
 
   return (
     <>
@@ -70,8 +74,9 @@ function Home() {
           <div className="row">
             {/* show products */}
             {!products.length ? (
-              <BoxLoading />
+              <div></div>
             ) : (
+              // <BoxLoading />
               <div className="col-12 col-lg-12">
                 <div className="content">
                   <div className="row">
@@ -94,15 +99,24 @@ function Home() {
                             </p>
                             {token && (
                               <>
-                                <NavLink className="button btn-view" to={`/product/${product._id}`}>
+                                <NavLink
+                                  className="button btn-view"
+                                  to={`/product/${product._id}`}
+                                >
                                   <i className="fa fa-eye"></i> View
                                 </NavLink>
 
-                                <button className="button btn-edit" onClick={() => updateProduct(product)}>
+                                <button
+                                  className="button btn-edit"
+                                  onClick={() => updateProduct(product)}
+                                >
                                   <i className="fa fa-edit"></i> Edit
                                 </button>
 
-                                <button className="button btn-delete" onClick={() => deleteProduct(product._id)}>
+                                <button
+                                  className="button btn-delete"
+                                  onClick={() => deleteProduct(product._id)}
+                                >
                                   <i className="fa fa-close"></i> Delete
                                 </button>
                               </>

@@ -35,7 +35,7 @@ const Navbar = () => {
               </NavLink>
             </li>
             <li className="nav-item">
-              <NavLink className="nav-link" to="about">
+              <NavLink className="nav-link" to="/aboutus">
                 About
               </NavLink>
             </li>
@@ -60,15 +60,15 @@ const Navbar = () => {
               </NavLink>
             </>
           ) : (
-            <button
+            <a
               onClick={() => {
                 localStorage.clear();
                 window.location.href = "/login";
               }}
-              className="link btn-login"
+              className="link btn-logout"
             >
               Logout
-            </button>
+            </a>
           )}
           <div className="animate-icon">
             <i className="fa fa-user"></i>

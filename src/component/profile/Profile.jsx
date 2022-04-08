@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { BoxLoading } from "react-loadingg";
+// import { BoxLoading } from "react-loadingg";
 import "../product/product.css";
 
 import { fetchUserData, updateProfileAvatar } from "../../api";
@@ -26,7 +26,7 @@ export default function Profile() {
             console.log(res);
             setUserData(res.data.data);
             // setAvatar(res.data.data.avatar)
-            setAvatarShown(res.data.data.avatar)
+            setAvatarShown(res.data.data.avatar);
           }
         })
         .catch((err) => {
@@ -39,7 +39,7 @@ export default function Profile() {
 
   const updateAvatar = () => {
     console.log("upadate avatar");
-    if(avatar){
+    if (avatar) {
       const formData = new FormData();
       formData.append("avatar", avatar);
 
@@ -47,17 +47,17 @@ export default function Profile() {
       const updateAvatarReq = async () => {
         await updateProfileAvatar(token, formData)
           .then((res) => {
-            setAvatarShown(res.data.data.avatar)
+            setAvatarShown(res.data.data.avatar);
 
             console.log(res.data.data.avatar);
           })
           .catch((err) => {
             console.log(err);
           });
-        }
+      };
       updateAvatarReq();
     }
-  }
+  };
 
   return (
     <>
@@ -66,9 +66,9 @@ export default function Profile() {
       <section>
         <div className="container py-5" style={{ position: "relative" }}>
           {!userData ? (
-            <BoxLoading />
-            // <div></div>
+            <div></div>
           ) : (
+            // <BoxLoading />
             <div className="row">
               <div className="col-lg-4">
                 <div className="card mb-4">
@@ -85,9 +85,21 @@ export default function Profile() {
                     </p>
                     <Form.Group controlId="formFileSm" className="mb-3">
                       <Form.Label>Select Image</Form.Label>
-                      <Form.Control type="file" name="avatar" size="sm" onChange={(e)=>setAvatar(e.target.files[0])} />
+                      <Form.Control
+                        type="file"
+                        name="avatar"
+                        size="sm"
+                        onChange={(e) => setAvatar(e.target.files[0])}
+                      />
                       <div className="input-group-append mt-3">
-                        <button className="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04" onClick={updateAvatar}>Submit</button>
+                        <button
+                          className="btn btn-outline-secondary"
+                          type="button"
+                          id="inputGroupFileAddon04"
+                          onClick={updateAvatar}
+                        >
+                          Submit
+                        </button>
                       </div>
                     </Form.Group>
                   </div>
